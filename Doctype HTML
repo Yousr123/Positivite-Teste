@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test de Positivité</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <h1>POSITIVITÉ</h1>
+    </header>
 
+    <main>
+        <section class="intro">
+            <p>
+                Prenez deux minutes pour remplir ce test. Votre score reflète la
+                combinaison de vos émotions ressenties au cours des dernières 24 heures.
+                Indiquez, à l’aide de l’échelle 0 – 4, l’intensité <em>maximale</em>
+                à laquelle vous avez éprouvé chaque émotion.
+            </p>
+            <ul class="scale">
+                <li>0 = Pas du tout</li>
+                <li>1 = Un petit peu</li>
+                <li>2 = Moyennement</li>
+                <li>3 = Beaucoup</li>
+                <li>4 = Extrêmement</li>
+            </ul>
+        </section>
+
+        <form id="quiz">
+            <!-- Les questions seront injectées ici par script.js -->
+            <button type="submit">Calculer !</button>
+        </form>
+
+        <section id="resultat" class="hidden"></section>
+    </main>
+
+    <footer>
+        <p>
+            Inspiré des travaux de la Pr Barbara Fredrickson.
+        </p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
