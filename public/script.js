@@ -58,25 +58,33 @@ questions.forEach((q, idx) => {
   quiz.insertBefore(wrapper, quiz.lastElementChild); // avant le bouton
 });
 
+// ...
+
 quiz.addEventListener("submit", e => {
   e.preventDefault();
-  let pos = 0;
-  let neg = 0;
+
+  let posScore = 0; // nombre d'émotions positives ≥ 2
+  let negScore = 0; // nombre d'émotions négatives ≥ 1
 
   questions.forEach((q, idx) => {
     const val = Number(document.getElementById(`q${idx}`).value);
-    if (q.pos) pos += val; else neg += val;
+
+    if (q.pos) {
+      if (val >= 2) posScore += 1;   // “Moyennement” ou plus
+    } else {
+      if (val >= 1) negScore += 1;   // “Un petit peu” ou plus
+    }
   });
 
-  const ratio = neg === 0 ? "∞" : (pos / neg).toFixed(2);
-  const interpr = getInterpretation(pos, neg, ratio);
+  const ratio = negScore === 0 ? "∞" : (posScore / negScore).toFixed(2);
+  const interpr = getInterpretation(posScore, negScore, ratio);
 
   resElt.innerHTML = `
     <h2>Vos scores du jour</h2>
-    <p><strong>Score de positivité :</strong> ${pos}</p>
-    <p><strong>Score de négativité :</strong> ${neg}</p>
-    <p><strong>Ratio de positivité :</strong> ${ratio}</p>
-    <h3>Comment interpréter ?</h3>
+    <p><strong>Score de positivité :</strong> ${posScore}</p>
+    <p><strong>Score de négativité :</strong> ${negScore}</p>
+    <p><strong>Ratio de positivité :</strong> ${ratio}</p>
+    <h3>Comment interpréter ?</h3>
     <p>${interpr}</p>
   `;
   resElt.classList.remove("hidden");
